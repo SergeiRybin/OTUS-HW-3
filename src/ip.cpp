@@ -5,7 +5,7 @@
 
 IP makeIP(const std::string &s)
 {
-    IP ip;
+    IP ip{0};
     uint8_t i = 0;
     uint8_t lowindex = 0;
     uint8_t currindex = 0;
