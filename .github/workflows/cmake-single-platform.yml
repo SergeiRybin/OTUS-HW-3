@@ -23,6 +23,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     
+    - name: Conan installation
+      run: sudo pip install conan
+
+    - name: Pull conan packets
+      run: conan install conanfile.txt --build=missing
+
     # install and cache dependencies
     - name: Cache boost-test
       uses: actions/cache@v3
@@ -43,12 +49,6 @@ jobs:
               dpkg -L $dep | while IFS= read -r f; do if test -f $f; then echo $f; fi; done | xargs cp --parents --target-directory ~/boost-test/
           done
         fi
-
-    - name: Conan installation
-      run: sudo apt-get install -yq conan
-
-    - name: Pull conan packets
-      run: conan install conanfile.txt --build=missing
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
