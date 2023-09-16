@@ -26,6 +26,9 @@ jobs:
     - name: Conan installation
       run: sudo pip install conan
 
+    - name: Conan profile setting up
+      run: conan profile new default --detect
+
     - name: Pull conan packets
       run: conan install conanfile.txt --build=missing
 
