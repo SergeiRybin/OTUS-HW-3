@@ -3,7 +3,7 @@
 TEMP_FOLDER=test-tmp
 
 # get out of build dir
-cd ../..
+cd ..
 echo $CMAKE_BUILD_TYPE > $TEMP_FOLDER/log.txt
 [ -d $TEMP_FOLDER ] || mkdir $TEMP_FOLDER
 cat ./test/data/ip_filter.tsv | ./build/$CMAKE_BUILD_TYPE/ipfilter > ./$TEMP_FOLDER/out.txt
