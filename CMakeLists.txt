@@ -46,11 +46,16 @@ add_test(appTest appTest)
 find_program (BASH_PROGRAM bash)
 if (BASH_PROGRAM)
   add_test (out_equality_test ${BASH_PROGRAM} ${CMAKE_CURRENT_SOURCE_DIR}/test/scripts/out_equality_test.sh)
-  set_tests_properties(
+
+set(TEST_ENV_VARS
+    CMAKE_CURRENT_BINARY_DIR=${CMAKE_CURRENT_BINARY_DIR}
+    CMAKE_CURRENT_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+set_tests_properties(
     out_equality_test
 PROPERTIES
-    # Make sure DLL is found by adding its directory to PATH
-    ENVIRONMENT "CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}"
+    ENVIRONMENT "${TEST_ENV_VARS}"
 )
 endif (BASH_PROGRAM)
 
